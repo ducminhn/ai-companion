@@ -61,6 +61,7 @@ export const CompanionForm = ({
   categories,
   initialData
 }: CompanionFormProps) => {
+
   const form = useForm<z.infer<typeof fromSchema>>({
     resolver: zodResolver(fromSchema),
     defaultValues: initialData || {
