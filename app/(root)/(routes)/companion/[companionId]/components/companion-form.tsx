@@ -35,7 +35,7 @@ Elon: Always! But right now, I'm particularly excited about Neuralink. It has th
 
 interface CompanionFormProps {
   initialData: Companion | null;
-  categories: Category[]
+  categories: Category[];
 }
 
 const fromSchema = z.object({
@@ -45,7 +45,7 @@ const fromSchema = z.object({
   description: z.string().min(1, {
     message: "Description is required."
   }),
-  instruction: z.string().min(200, {
+  instructions: z.string().min(200, {
     message: "Instructions require at least 200 characters."
   }),
   seed: z.string().min(200, {
@@ -71,7 +71,7 @@ export const CompanionForm = ({
     defaultValues: initialData || {
       name: "",
       description: "",
-      instruction: "",
+      instructions: "",
       seed: "",
       src: "",
       categoryId: undefined
@@ -91,7 +91,8 @@ export const CompanionForm = ({
       }
 
       toast({
-        description: "Success"
+        description: "Success.",
+        duration: 3000
       })
 
       router.refresh();
@@ -99,7 +100,8 @@ export const CompanionForm = ({
     } catch (error) {
       toast({
         variant: "destructive",
-        description: "Something went wrong"
+        description: "Something went wrong",
+        duration: 3000
       })
     }
   };
@@ -226,7 +228,7 @@ export const CompanionForm = ({
             <Separator className="bg-primary/10" />
           </div>
           <FormField 
-            name="instruction"
+            name="instructions"
             control={form.control}
             render={({ field }) => (
               <FormItem className="col-span-2 md:col-span-1">
